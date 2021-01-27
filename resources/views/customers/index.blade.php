@@ -22,7 +22,6 @@
         <tr>
             <th>No</th>
             <th>Name</th>
-            <th>Details</th>
             <th width="280px">Action</th>
         </tr>
         @foreach ($customers as $customer)
