@@ -1,13 +1,13 @@
-@extends('customers.layout')
+@extends('payments.layout')
 
 @section('content')
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>List of Customer</h2>
+                <h2>List of Payment</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('customers.create') }}"> Create New Customer</a>
+                <a class="btn btn-success" href="{{ route('payments.create') }}"> Create New Payment</a>
             </div>
         </div>
     </div>
@@ -22,17 +22,19 @@
         <tr>
             <th>No</th>
             <th>Name</th>
+            <th>Payment Date</th>
             <th width="200px">Action</th>
         </tr>
         <?php $i = 1; ?>
-        @foreach ($customers as $customer)
+        @foreach ($payments as $payment)
         <tr>
             <td>{{ $i++ }}</td>
-            <td>{{ $customer->name }}</td>
+            <td>{{ $payment->customer->name }}</td>
+            <td>{{ $payment->payment_date }}</td>
             <td>
-                <form action="{{ route('customers.destroy',$customer->id) }}" method="POST">
+                <form action="{{ route('payments.destroy',$payment->id) }}" method="POST">
 
-                    <a class="btn btn-primary" href="{{ route('customers.edit',$customer->id) }}">Edit</a>
+                    <a class="btn btn-primary" href="{{ route('payments.edit',$payment->id) }}">Edit</a>
 
                     @csrf
                     @method('DELETE')
@@ -44,6 +46,6 @@
         @endforeach
     </table>
 
-    {!! $customers->links() !!}
+    {!! $payments->links() !!}
 
 @endsection
