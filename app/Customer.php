@@ -13,4 +13,9 @@ class Customer extends Model
     protected $primaryKey = 'id';
     protected $table = 'customers';
     public $incrementing = false;
+
+    public function payments()
+    {
+        return $this->hasMany('App\Payment');
+    }
 }

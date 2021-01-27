@@ -13,4 +13,9 @@ class Payment extends Model
 
     protected $primaryKey = 'id';
     protected $table = 'payments';
+
+    public function customer()
+    {
+        return $this->belongsTo('App\Customer');
+    }
 }
