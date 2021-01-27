@@ -14,7 +14,7 @@ class Duechecker extends Migration
     public function up()
     {
         Schema::create('customers', function (Blueprint $table) {
-            $table->uuid('id');
+            $table->bigIncrements('id');
             $table->string('name', 100);
             $table->timestamps();
         });
