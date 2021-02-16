@@ -13,4 +13,9 @@ class DashboardController extends Controller
 
         return view('dashboards.index',compact('payments'));
     }
+
+    public function admin()
+    {
+    	return view('dashboards.admin');
+    }
 }

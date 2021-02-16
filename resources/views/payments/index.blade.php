@@ -7,6 +7,7 @@
                 <h2>List of Payment</h2>
             </div>
             <div class="pull-right">
+                <a class="btn btn-primary" href="{{ route('admin') }}"> Back</a>
                 <a class="btn btn-success" href="{{ route('payments.create') }}"> Create New Payment</a>
             </div>
         </div>
@@ -22,6 +23,7 @@
         <tr>
             <th>No</th>
             <th>Name</th>
+            <th>Pay for</th>
             <th>Payment Date</th>
             <th width="200px">Action</th>
         </tr>
@@ -30,6 +32,7 @@
         <tr>
             <td>{{ $i++ }}</td>
             <td>{{ $payment->customer->name }}</td>
+            <td>{{ @$payment->item->name }}</td>
             <td>{{ $payment->payment_date }}</td>
             <td>
                 <form action="{{ route('payments.destroy',$payment->id) }}" method="POST">

@@ -1,14 +1,14 @@
-@extends('customers.layout')
+@extends('months.layout')
 
 @section('content')
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>List of Customer</h2>
+                <h2>List of Month</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('admin') }}"> Back</a>
-                <a class="btn btn-success" href="{{ route('customers.create') }}"> Create New Customer</a>
+                <a class="btn btn-success" href="{{ route('months.create') }}"> Create New Month</a>
             </div>
         </div>
     </div>
@@ -23,17 +23,19 @@
         <tr>
             <th>No</th>
             <th>Name</th>
+            <th>In Number</th>
             <th width="200px">Action</th>
         </tr>
         <?php $i = 1; ?>
-        @foreach ($customers as $customer)
+        @foreach ($months as $month)
         <tr>
             <td>{{ $i++ }}</td>
-            <td>{{ $customer->name }}</td>
+            <td>{{ $month->name }}</td>
+            <td>{{ @$month->in_number }}</td>
             <td>
-                <form action="{{ route('customers.destroy',$customer->id) }}" method="POST">
+                <form action="{{ route('months.destroy',$month->id) }}" method="POST">
 
-                    <a class="btn btn-primary" href="{{ route('customers.edit',$customer->id) }}">Edit</a>
+                    <a class="btn btn-primary" href="{{ route('months.edit',$month->id) }}">Edit</a>
 
                     @csrf
                     @method('DELETE')
@@ -45,6 +47,5 @@
         @endforeach
     </table>
 
-    {!! $customers->links() !!}
 
 @endsection

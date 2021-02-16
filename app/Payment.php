@@ -8,7 +8,8 @@ class Payment extends Model
 {
     protected $fillable = [
         'payment_date',
-        'customer_id' 
+        'customer_id',
+        'item_id' 
     ];
 
     protected $primaryKey = 'id';
@@ -17,5 +18,10 @@ class Payment extends Model
     public function customer()
     {
         return $this->belongsTo('App\Customer');
+    }
+
+    public function item()
+    {
+        return $this->belongsTo('App\Item');
     }
 }

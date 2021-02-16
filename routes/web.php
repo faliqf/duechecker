@@ -16,5 +16,8 @@ Route::get('/', function () {
 });
 
 Route::resource('customers','CustomerController');
+Route::resource('items','ItemController');
+Route::resource('months','MonthController');
 Route::resource('payments','PaymentController');
 Route::resource('dashboards','DashboardController');
+Route::get('/admin' ,'DashboardController@admin')->name('admin');

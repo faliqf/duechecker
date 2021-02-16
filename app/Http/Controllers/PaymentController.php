@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Payment;
 use App\Customer;
+use App\Item;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
@@ -29,7 +30,8 @@ class PaymentController extends Controller
     public function create()
     {
         $customers = Customer::all();
-        return view('payments.create', compact('customers'));
+        $items = Item::all();
+        return view('payments.create', compact('customers', 'items'));
     }
 
     /**
@@ -71,9 +73,13 @@ class PaymentController extends Controller
      * @param  \App\Payment  $payment
      * @return \Illuminate\Http\Response
      */
-    public function edit(Payment $payment)
+    public function edit($id)
     {
-        //
+        $payment = Payment::find($id);
+        $customers = Customer::all();
+        $months = Month::all();
+        $items = Item::all();
+        return view('payments.edit', compact('customers', 'items', 'payment', 'months'));
     }
 
     /**
@@ -85,7 +91,18 @@ class PaymentController extends Controller
      */
     public function update(Request $request, Payment $payment)
     {
-        //
+        $request->validate([
+            'customer_id' => 'required',
+            'payment_date' => 'required',
+            'item_id' => 'required',
+        ]);
+        
+        $request_data = $request->all();
+
+        $payment->update($request_data);
+
+        return redirect()->route('payments.index')
+                        ->with('success','Payment update successfully.');
     }
 
     /**
