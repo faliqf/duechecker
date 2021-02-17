@@ -42,19 +42,23 @@
             </div>
                 <strong>Date Pay:</strong> 
                 <input data-provide="datepicker" name='payment_date' value = {{ $payment->payment_date ?? '' }}>
+                <br><br>
+
+                <strong>Amount:</strong> 
+                <input name='amount' id='amount' value = {{ $payment->amount ?? '' }}>
 
                 <br><br>
                 <strong>Pay for:</strong>
                 <select class="form-control" name="item_id" id="item_id" >
                 @foreach($items as $item)
-                   <option  value={{ $item->id }} >{{ $item->name }}</option>
+                   <option  value={{ $item->id }}  {{ $payment->item_id == $item->id ? 'selected' : ''}}>{{ $item->name }}</option>
                 @endforeach
                 </select>
                 <br>
                 <strong>Month:</strong>
-                <select class="form-control" name="item_id" id="item_id" >
+                <select class="form-control" name="month_id" id="month_id" >
                 @foreach($months as $month)
-                   <option  value={{ $item->id }} >{{ $item->name }}</option>
+                   <option  value={{ $month->id }}  {{ $payment->month_id == $month->id ? 'selected' : ''}}>{{ $month->name }}</option>
                 @endforeach
                 </select>
         </div>

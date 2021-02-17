@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Payment;
 use App\Customer;
 use App\Item;
+use App\Month;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
@@ -16,10 +17,9 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        $payments = Payment::latest()->paginate(5);
+        $payments = Payment::orderBy('payment_date', 'desc')->get();
 
-        return view('payments.index',compact('payments'))
-            ->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('payments.index',compact('payments'));
     }
 
     /**
@@ -31,7 +31,8 @@ class PaymentController extends Controller
     {
         $customers = Customer::all();
         $items = Item::all();
-        return view('payments.create', compact('customers', 'items'));
+        $months = Month::all();
+        return view('payments.create', compact('customers', 'items', 'months'));
     }
 
     /**
@@ -95,6 +96,8 @@ class PaymentController extends Controller
             'customer_id' => 'required',
             'payment_date' => 'required',
             'item_id' => 'required',
+            'month_id' => 'required',
+            'amount' => 'required'
         ]);
         
         $request_data = $request->all();

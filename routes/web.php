@@ -21,3 +21,4 @@ Route::resource('months','MonthController');
 Route::resource('payments','PaymentController');
 Route::resource('dashboards','DashboardController');
 Route::get('/admin' ,'DashboardController@admin')->name('admin');
+Route::get('/youtube' ,'DashboardController@youtube')->name('youtube');

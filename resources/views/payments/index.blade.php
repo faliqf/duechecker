@@ -24,6 +24,8 @@
             <th>No</th>
             <th>Name</th>
             <th>Pay for</th>
+            <th>Pay for Month</th>
+            <th>Amount</th>
             <th>Payment Date</th>
             <th width="200px">Action</th>
         </tr>
@@ -33,6 +35,8 @@
             <td>{{ $i++ }}</td>
             <td>{{ $payment->customer->name }}</td>
             <td>{{ @$payment->item->name }}</td>
+            <td>{{ @$payment->month->name }}</td>
+            <td>RM {{ @$payment->amount }}</td>
             <td>{{ $payment->payment_date }}</td>
             <td>
                 <form action="{{ route('payments.destroy',$payment->id) }}" method="POST">
@@ -49,6 +53,5 @@
         @endforeach
     </table>
 
-    {!! $payments->links() !!}
 
 @endsection

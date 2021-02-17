@@ -47,6 +47,13 @@
                 @foreach($items as $item)
                    <option  value={{ $item->id }} >{{ $item->name }}</option>
                 @endforeach
+                </select>
+                <strong>Month:</strong>
+                <select class="form-control" name="month_id" id="month_id" >
+                @foreach($months as $month)
+                   <option  value={{ $month->id }} >{{ $month->name }}</option>
+                @endforeach
+                </select>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">Submit</button>
